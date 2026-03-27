@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayank Vekariya | Project Portfolio</title>
+  <meta name="description" content="Project portfolio focused on project delivery, coordination, systems thinking, and engineering execution." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111831;
+      --panel-2: #17203d;
+      --text: #edf2ff;
+      --muted: #b2bddb;
+      --line: rgba(255,255,255,0.08);
+      --accent: #7cc7ff;
+      --accent-2: #8ef0d6;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(124,199,255,0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(142,240,214,0.10), transparent 22%),
+        linear-gradient(180deg, #0a1020 0%, #0b1020 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(11,16,32,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .hero {
+      padding: 84px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .summary-card,
+    .project-card,
+    .filter-card,
+    .about-card,
+    .footer-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 34px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(124,199,255,0.22);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.84rem;
+      letter-spacing: 0.02em;
+      background: rgba(124,199,255,0.08);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(124,199,255,0.20), rgba(142,240,214,0.18));
+      border-color: rgba(124,199,255,0.22);
+    }
+
+    .summary-card {
+      padding: 26px;
+      display: grid;
+      gap: 14px;
+      align-content: center;
+    }
+
+    .metric {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .metric .label {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric .value {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    section {
+      padding: 22px 0 10px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .filter-card {
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 160ms ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      color: var(--text);
+      border-color: rgba(124,199,255,0.28);
+      background: rgba(124,199,255,0.10);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      grid-column: span 6;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 220ms ease, border-color 220ms ease;
+      min-height: 470px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,199,255,0.18);
+    }
+
+    .project-image-wrap {
+      position: relative;
+      height: 100%;
+      min-height: 470px;
+      overflow: hidden;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
+      transition: transform 280ms ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.06);
+    }
+
+    .project-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,11,24,0.08) 0%, rgba(8,11,24,0.18) 34%, rgba(8,11,24,0.88) 100%);
+      pointer-events: none;
+    }
+
+    .project-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 26px;
+      z-index: 2;
+    }
+
+    .project-type {
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(124,199,255,0.12);
+      border: 1px solid rgba(124,199,255,0.18);
+      border-radius: 999px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .project-summary {
+      margin: 0;
+      color: #d2daef;
+      max-width: 90%;
+    }
+
+    .project-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .specs-preview {
+      display: grid;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 220ms ease;
+    }
+
+    .project-card:hover .specs-preview {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .specs-preview span {
+      display: inline-flex;
+      width: fit-content;
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(7,10,20,0.42);
+      backdrop-filter: blur(8px);
+    }
+
+    .open-hint {
+      color: #eef5ff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 10px;
+    }
+
+    .about-card {
+      padding: 24px;
+    }
+
+    .about-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .list strong { color: var(--text); }
+
+    .footer {
+      padding: 30px 0 48px;
+    }
+
+    .footer-card {
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(3,6,17,0.72);
+      backdrop-filter: blur(12px);
+      z-index: 60;
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-panel {
+      width: min(1120px, 100%);
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+      background: linear-gradient(180deg, #111831, #0f1730);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-hero {
+      position: relative;
+      min-height: 360px;
+    }
+
+    .modal-hero img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .modal-gallery {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+    }
+
+    .modal-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-gallery::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,14,25,0.08), rgba(10,14,25,0.82));
+      pointer-events: none;
+    }
+
+    .thumbnail-row {
+      display: flex;
+      gap: 10px;
+      padding: 14px 18px;
+      overflow-x: auto;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .thumbnail-row img {
+      width: 90px;
+      height: 68px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      opacity: 0.75;
+      border: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+
+    .thumbnail-row img:hover {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+
+    .modal-topbar {
+      position: absolute;
+      inset: 16px 16px auto auto;
+      z-index: 2;
+    }
+
+    .close-btn {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(6,8,16,0.55);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .modal-title-block {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 26px;
+    }
+
+    .modal-title-block h3 {
+      margin: 8px 0 8px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+
+    .modal-body {
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .panel-box h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .panel-box p,
+    .panel-box li {
+      color: var(--muted);
+    }
+
+    .tag-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124,199,255,0.10);
+      border: 1px solid rgba(124,199,255,0.16);
+      color: #e8f4ff;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 26px;
+      border-radius: 20px;
+      border: 1px dashed rgba(255,255,255,0.18);
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 56px; }
+      .hero-card, .summary-card, .about-card { padding: 20px; }
+      .project-content { padding: 18px; }
+      .project-title { font-size: 1.4rem; }
+      .nav-inner { align-items: start; flex-direction: column; }
+      .modal-title-block, .modal-body { padding: 18px; }
+      .modal-hero img { height: 260px; }
+      .project-card, .project-image-wrap { min-height: 400px; }
+    }
+    </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">Mayank Vekariya</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Project Portfolio • Delivery • Coordination • Execution</div>
+          <h1>Projects I <span>planned</span>, drove, and delivered.</h1>
+          <p class="lead">
+            I build and manage engineering and operations-focused projects with clear scope, stakeholder coordination,
+            structured execution, documentation discipline, and outcome tracking. This portfolio is designed to show
+            not only what was built, but how the work was organized and delivered.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Explore Projects</a>
+            <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
+            <a class="btn" href="mailto:yourmail@example.com">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="metric">
+            <div class="label">Portfolio Focus</div>
+            <div class="value">Project Management</div>
+          </div>
+          <div class="metric">
+            <div class="label">Core Strengths</div>
+            <div class="value">Planning • Coordination • Tracking</div>
+          </div>
+          <div class="metric">
+            <div class="label">Project Types</div>
+            <div class="value">Engineering • Digital • Process</div>
+          </div>
+          <div class="metric">
+            <div class="label">What Recruiters See</div>
+            <div class="value">Scope, ownership, metrics, delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Selected Projects</h2>
+            <p class="section-copy">
+              Hover over each project to see quick specifications. Click any project to open the full project sheet with
+              objectives, scope, tools, outcomes, and delivery details.
+            </p>
+          </div>
+        </div>
+
+        <div class="filter-card" id="filterBar"></div>
+        <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>How I Approach Projects</h2>
+            <p class="section-copy">
+              This section helps position the portfolio for project manager roles by showing how work is planned,
+              tracked, coordinated, and brought to completion.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Execution Style</h3>
+            <div class="list">
+              <div><strong>Define scope clearly:</strong> align the objective, deliverables, constraints, and success criteria at the start.</div>
+              <div><strong>Break work into phases:</strong> convert complex work into milestones, owners, dependencies, and review points.</div>
+              <div><strong>Coordinate stakeholders:</strong> keep technical and non-technical contributors aligned through structured communication.</div>
+              <div><strong>Track progress visibly:</strong> follow timelines, risks, blockers, and decisions with disciplined reporting.</div>
+              <div><strong>Close with evidence:</strong> show outcomes through documentation, handover quality, metrics, and lessons learned.</div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h3>What To Add For Each New Project</h3>
+            <div class="list">
+              <div><strong>Project name and cover image</strong></div>
+              <div><strong>Business context and objective</strong></div>
+              <div><strong>Your role and responsibilities</strong></div>
+              <div><strong>Timeline, team size, tools, and stakeholders</strong></div>
+              <div><strong>Challenges, actions taken, and measurable outcomes</strong></div>
+              <div><strong>GitHub link, report, or live demo if available</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer" id="contact">
+      <div class="container">
+        <div class="footer-card">
+          <div>
+            <strong>Ready for project, coordination, and delivery-focused roles.</strong>
+            <div class="muted">Use this page in your resume, LinkedIn, and applications to show real project evidence.</div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn" href="mailto:yourmail@example.com">Email</a>
+            <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-hero">
+        <div class="modal-gallery">
+          <img id="modalMainImage" src="" alt="Project image" />
+        </div>
+
+        <div class="modal-topbar">
+          <button class="close-btn" id="closeModal" aria-label="Close modal">×</button>
+        </div>
+
+        <div class="modal-title-block">
+          <div class="project-type" id="modalCategory"></div>
+          <h3 id="modalTitle"></h3>
+          <p class="project-summary" id="modalSummary"></p>
+        </div>
+      </div>
+
+      <div class="thumbnail-row" id="modalThumbnails"></div>
+
+      <div class="modal-body">
+        <div class="stack">
+          <div class="panel-box">
+            <h4>Project Overview</h4>
+            <p id="modalOverview"></p>
+          </div>
+          <div class="panel-box">
+            <h4>Technical Specifications</h4>
+            <div class="list" id="modalTechSpecs"></div>
+          </div>
+          <div class="panel-box">
+            <h4>Responsibilities</h4>
+            <ul id="modalResponsibilities"></ul>
+          </div>
+
+          <div class="panel-box">
+            <h4>Challenges and Actions</h4>
+            <p id="modalChallenges"></p>
+          </div>
+
+          <div class="panel-box">
+            <h4>Results and Impact</h4>
+            <p id="modalResults"></p>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="panel-box">
+            <h4>Quick Specs</h4>
+            <div class="list" id="modalSpecs"></div>
+          </div>
+
+          <div class="panel-box">
+            <h4>Tools and Methods</h4>
+            <div class="tag-wrap" id="modalTools"></div>
+          </div>
+
+          <div class="panel-box">
+            <h4>Links</h4>
+            <div class="link-group" id="modalLinks"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projects = [
+
+{
+  title: "5 MW Solar PV Plant Execution and Coordination",
+  category: "Renewable Energy Project",
+  filter: "Engineering",
+  images: ["images/project-1.jpg"],
+
+  shortSummary: "Coordinated execution of a utility-scale solar PV plant, managing multi-team installation activities, progress tracking, and on-site workflow alignment.",
+
+  overview: "Worked on the execution of a 5 MW ground-mounted solar PV plant, focusing on installation coordination, activity sequencing, and real-time progress tracking. The role involved aligning civil, mechanical, and electrical teams to ensure smooth installation flow while maintaining visibility on daily progress, dependencies, and delays.",
+
+  responsibilities: [
+    "Coordinated installation activities across civil, electrical, and module mounting teams",
+    "Tracked daily progress against installation schedules and identified execution gaps",
+    "Managed workfront readiness and ensured smooth transition between installation phases",
+    "Prepared structured progress reports and maintained execution documentation",
+    "Supported on-site communication between teams to resolve blockers in real time"
+  ],
+
+  challenges: "Managing parallel execution across multiple zones with dependencies between civil and electrical work, while maintaining consistent progress tracking in an outdoor environment with variable conditions.",
+
+  results: "Improved installation flow and execution visibility by introducing structured tracking and coordination practices, enabling better alignment across teams and reducing delays caused by sequencing issues.",
+
+  impact: [
+    "Improved coordination across 3+ teams (civil, electrical, installation)",
+    "Enhanced daily progress visibility and reporting accuracy",
+    "Reduced idle time between dependent activities through better sequencing",
+    "Minimized rework caused by misaligned installation phases"
+  ],
+
+  decisions: [
+    "Re-sequenced installation workflow to reduce dependency-related delays",
+    "Prioritized critical workfronts to maintain continuous execution flow",
+    "Standardized daily tracking format for better visibility across teams"
+  ],
+
+  complexity: [
+    "Multi-team coordination across civil, electrical, and installation work",
+    "Parallel execution across multiple zones",
+    "Dependency-driven installation sequence",
+    "Outdoor execution with environmental constraints"
+  ],
+
+  specs: [
+    ["Role", "Project Coordination / Site Execution"],
+    ["Duration", "16 weeks"],
+    ["Team", "20+ technicians across teams"],
+    ["Focus", "Execution planning and coordination"],
+    ["Outcome", "Improved workflow visibility and coordination"]
+  ],
+
+  technicalSpecs: [
+    ["Plant Type", "Ground-mounted Solar PV"],
+    ["Installed Capacity", "5 MW"],
+    ["Module Type", "Monocrystalline"],
+    ["Mounting", "Fixed tilt"],
+    ["Inverter", "String Inverters"],
+    ["Voltage", "1000–1500 V DC"]
+  ],
+
+  previewSpecs: ["5 MW plant", "Execution coordination", "Multi-team"],
+
+  tools: [
+    "Excel",
+    "Project Tracking Sheets",
+    "Site Reporting",
+    "Coordination and Planning"
+  ],
+
+  links: []
+},
+
+{
+  title: "500 kW Rooftop Solar PV Installation",
+  category: "Renewable Energy Project",
+  filter: "Engineering",
+  images: ["images/project-2.jpg"],
+
+  shortSummary: "Managed execution and coordination of a rooftop solar installation, ensuring safe operations, sequencing, and real-time progress tracking.",
+
+  overview: "Executed a 500 kW rooftop solar installation project on an industrial facility, focusing on installation coordination, safety compliance, and workflow tracking. The role involved managing constrained rooftop operations, aligning installation teams, and ensuring structured execution under safety and access limitations.",
+
+  responsibilities: [
+    "Coordinated rooftop installation activities including structure and module placement",
+    "Monitored installation progress and ensured adherence to execution plans",
+    "Ensured compliance with working-at-height safety standards",
+    "Maintained daily logs, issue tracking, and progress documentation",
+    "Aligned installation teams with site constraints and access limitations"
+  ],
+
+  challenges: "Executing installation in a constrained rooftop environment with strict safety requirements, limited access, and weather dependencies, while maintaining steady progress.",
+
+  results: "Enabled safe and structured execution of rooftop installation, improving coordination and maintaining consistent progress despite operational constraints.",
+
+  impact: [
+    "Maintained 100% safety compliance during rooftop execution",
+    "Improved coordination between installation and safety teams",
+    "Reduced delays caused by access and sequencing issues",
+    "Enhanced visibility of daily execution progress"
+  ],
+
+  decisions: [
+    "Adjusted installation sequence based on rooftop accessibility constraints",
+    "Prioritized safety-first workflow without impacting overall timeline",
+    "Implemented structured daily tracking for issue resolution"
+  ],
+
+  complexity: [
+    "Safety-critical environment (working at height)",
+    "Limited access and constrained workspace",
+    "Weather-dependent execution",
+    "High coordination between installation and safety teams"
+  ],
+
+  specs: [
+    ["Role", "Site Execution / Coordination"],
+    ["Duration", "10 weeks"],
+    ["Team", "Installation + Safety Teams"],
+    ["Focus", "Rooftop execution"],
+    ["Outcome", "Safe and efficient installation"]
+  ],
+
+  technicalSpecs: [
+    ["Plant Type", "Rooftop Solar PV"],
+    ["Capacity", "500 kW"],
+    ["Mounting", "Rooftop fixed tilt"],
+    ["Voltage", "1000 V DC"],
+    ["Installation", "Industrial rooftop"]
+  ],
+
+  previewSpecs: ["Rooftop solar", "Safety-critical", "Execution"],
+
+  tools: [
+    "Excel",
+    "Installation Planning",
+    "Safety Coordination",
+    "Reporting"
+  ],
+
+  links: []
+},
+
+{
+  title: "10 MW Solar Farm Deployment with Tracker System",
+  category: "Renewable Energy Project",
+  filter: "Engineering",
+  images: ["images/project-3.jpg"],
+
+  shortSummary: "Coordinated large-scale solar farm deployment with tracker systems, focusing on mechanical alignment, sequencing, and field execution monitoring.",
+
+  overview: "Worked on the deployment of a 10 MW solar farm with single-axis tracking systems, focusing on installation sequencing, alignment accuracy, and multi-team coordination. The role required managing repetitive but precision-critical tasks such as tracker alignment and module installation across a large field.",
+
+  responsibilities: [
+    "Coordinated installation of tracker structures and PV modules",
+    "Monitored alignment accuracy and mechanical positioning",
+    "Tracked execution progress across multiple parallel work zones",
+    "Ensured coordination between mechanical and electrical teams",
+    "Maintained logs and progress reports for field execution"
+  ],
+
+  challenges: "Handling large-scale field execution with precision requirements, ensuring alignment accuracy while managing multiple teams and environmental challenges such as heat and uneven terrain.",
+
+  results: "Improved installation efficiency and reduced rework by ensuring better alignment practices and structured coordination across teams.",
+
+  impact: [
+    "Improved alignment accuracy of tracker systems",
+    "Reduced rework caused by misalignment issues",
+    "Enhanced execution efficiency across large-scale field operations",
+    "Strengthened coordination across mechanical and electrical teams"
+  ],
+
+  decisions: [
+    "Standardized alignment checks to reduce errors",
+    "Optimized installation sequence for large-area deployment",
+    "Improved coordination between parallel work zones"
+  ],
+
+  complexity: [
+    "Large-scale field deployment (10 MW)",
+    "Precision-dependent mechanical alignment",
+    "Multiple parallel work zones",
+    "Environmental challenges (heat, terrain)"
+  ],
+
+  specs: [
+    ["Role", "Field Coordination"],
+    ["Duration", "12 weeks"],
+    ["Team", "Mechanical + Electrical"],
+    ["Focus", "Solar farm deployment"],
+    ["Outcome", "Improved alignment and execution"]
+  ],
+
+  technicalSpecs: [
+    ["Plant Type", "Ground-mounted Solar"],
+    ["Capacity", "10 MW"],
+    ["Tracking", "Single-axis tracker"],
+    ["Structure", "Galvanized steel"],
+    ["Voltage", "1000–1500 V DC"]
+  ],
+
+  previewSpecs: ["10 MW farm", "Tracker system", "Field execution"],
+
+  tools: [
+    "Excel",
+    "Field Tracking",
+    "Coordination",
+    "Reporting"
+  ],
+
+  links: []
+},
+
+{
+  title: "BLDC Motor Prototype Development (End-to-End)",
+  category: "Electromechanical Engineering Project",
+  filter: "Engineering",
+  images: ["images/project-4-1.jpg", "images/project-4-2.jpg", "images/project-4-3.jpg"],
+
+  shortSummary: "Independently designed and built a functional BLDC motor prototype, managing the full lifecycle from concept to testing.",
+
+  overview: "Developed a BLDC motor prototype from scratch, covering electromagnetic design, mechanical integration, assembly, and testing. The project involved hands-on design decisions, iterative improvements, and validation of motor performance under test conditions.",
+
+  responsibilities: [
+    "Designed stator, rotor, and winding configuration",
+    "Executed manual winding with phase alignment",
+    "Developed rotor assembly with magnet placement and balancing",
+    "Integrated shaft, bearings, and housing",
+    "Performed testing for rotation, torque, and stability",
+    "Managed full lifecycle from concept to validation"
+  ],
+
+  challenges: "Achieving precise alignment between mechanical and electromagnetic components, ensuring winding consistency, rotor balance, and maintaining optimal air-gap.",
+
+  results: "Successfully developed a working BLDC motor prototype demonstrating stable rotation and functional performance.",
+
+  impact: [
+    "Delivered a complete working prototype independently",
+    "Achieved stable rotation with minimal vibration",
+    "Validated electromechanical integration through testing",
+    "Built strong hands-on understanding of motor systems"
+  ],
+
+  decisions: [
+    "Selected winding configuration for torque optimization",
+    "Balanced rotor to minimize vibration",
+    "Iteratively refined alignment and air-gap"
+  ],
+
+  complexity: [
+    "End-to-end individual project",
+    "Electromagnetic + mechanical integration",
+    "Precision-dependent assembly",
+    "Iterative prototyping and testing"
+  ],
+
+  specs: [
+    ["Role", "End-to-End Developer"],
+    ["Duration", "8–10 weeks"],
+    ["Team", "Individual"],
+    ["Focus", "Prototype development"],
+    ["Outcome", "Working motor"]
+  ],
+
+  technicalSpecs: [
+    ["Motor Type", "BLDC"],
+    ["Phases", "3-phase"],
+    ["Rotor", "Permanent magnet"],
+    ["Voltage", "12–48 V"],
+    ["Cooling", "Passive"]
+  ],
+
+  previewSpecs: ["BLDC motor", "Prototype", "End-to-end"],
+
+  tools: [
+    "Manual Tools",
+    "Testing Equipment",
+    "Basic CAD",
+    "Assembly Tools"
+  ],
+
+  links: []
+}, {
+  title: "Solar-Powered Water Pump Deployment for Remote Locations - Falcon Pumps Pvt Ltd",
+  category: "Renewable Energy & Industrial Project",
+  filter: "Engineering",
+  images: ["images/project-5.jpg"],
+  shortSummary: "Researched, designed, and supported deployment of solar-powered water pumping solutions for remote areas, enabling reliable water supply without grid dependency.",
+
+  overview: "At Falcon Pumps Pvt Ltd, I worked on enabling solar-powered water pumping solutions targeted at remote and off-grid locations. The objective was to identify technically feasible and cost-effective configurations for operating water pumps using solar energy. This involved researching system components, sizing solar arrays, selecting compatible pumps, and defining deployment configurations suitable for rural and low-infrastructure environments. The outcome supported practical implementation of solar pump systems that are still used for water supply in remote areas.",
+
+  responsibilities: [
+    "Researched solar-powered pumping systems including PV modules, controllers, and motor compatibility",
+    "Identified suitable pump types and configurations for solar-based operation",
+    "Performed basic system sizing for solar panels based on pump load requirements",
+    "Analyzed feasibility for deployment in remote and off-grid locations",
+    "Coordinated with internal teams to align technical feasibility with product offerings",
+    "Supported documentation of system configurations for practical implementation"
+  ],
+
+  challenges: "The main challenge was balancing system cost, performance, and reliability in remote environments with limited infrastructure. Variability in sunlight, load requirements, and installation conditions required adaptable and simplified system configurations.",
+
+  results: "Enabled practical solar-powered pumping solutions for remote applications, improving access to water without reliance on grid electricity. The configurations developed supported real-world deployment and are aligned with ongoing usage in field conditions.",
+
+  specs: [
+    ["Company", "Falcon Pumps Pvt Ltd"],
+    ["Role", "System Research & Implementation Support"],
+    ["Duration", "4-6 weeks"],
+    ["Application", "Remote water supply"],
+    ["Outcome", "Solar pump solutions deployed and used"]
+  ],
+
+  technicalSpecs: [
+    ["System Type", "Solar-powered water pumping system"],
+    ["Power Source", "Photovoltaic (PV) panels"],
+    ["Pump Type", "DC/AC submersible or surface pumps"],
+    ["Controller", "Solar pump controller / VFD"],
+    ["Power Range", "Small to medium scale (1–10 HP typical)"],
+    ["Operation", "Off-grid / standalone system"],
+    ["Energy Storage", "Optional (battery-less direct operation)"],
+    ["Installation", "Rural and remote locations"],
+    ["Key Parameters", "Flow rate, head, solar irradiance"],
+    ["Design Focus", "Efficiency, reliability, low maintenance"]
+  ],
+
+  previewSpecs: ["Solar pump system", "Remote deployment", "Off-grid solution"],
+
+  tools: [
+    "Excel",
+    "Technical Research",
+    "System Sizing",
+    "Feasibility Analysis",
+    "Documentation"
+  ],
+
+  links: [
+    { label: "Project Summary", url: "#" }
+  ]
+},
+{
+  title: "Field Operations Dashboard for Project Progress Tracking – Falcon Pumps Pvt Ltd",
+  category: "Operations & Project Management System",
+  filter: "Engineering",
+  images: ["images/project-6.jpg"],
+
+  shortSummary: "Designed and implemented a field reporting dashboard enabling real-time visibility of site progress, improving coordination between field engineers and management.",
+
+  overview: "At Falcon Pumps Pvt Ltd, I identified a critical gap in communication between field engineers and management, where project progress updates from sites were inconsistent and delayed. I designed and implemented a structured dashboard system that allowed field engineers to report daily progress, issues, and status updates in a standardized format. The dashboard provided management with clear visibility into ongoing site activities, enabling faster decision-making and improved coordination. The system continues to be actively used for project tracking.",
+
+  responsibilities: [
+    "Analyzed communication gaps between field engineers and management",
+    "Designed a structured reporting framework for site progress updates",
+    "Developed an Excel-based dashboard for daily reporting and tracking",
+    "Defined key reporting parameters such as progress status, delays, issues, and dependencies",
+    "Coordinated with field engineers to ensure adoption and correct usage",
+    "Standardized reporting format across multiple sites for consistency"
+  ],
+
+  challenges: "The main challenge was ensuring consistent and accurate reporting from field teams working in different locations. This was addressed by simplifying the reporting structure and aligning it with daily workflow practices to ensure ease of use and adoption.",
+
+  results: "Significantly improved visibility of project execution across sites, reduced communication delays, and enabled faster issue identification and resolution. The dashboard is still actively used by field engineers and management for tracking ongoing projects.",
+
+  specs: [
+    ["Company", "Falcon Pumps Pvt Ltd"],
+    ["Role", "System Developer / Project Coordination"],
+    ["Duration", "6–8 weeks"],
+    ["Users", "Field Engineers and Management"],
+    ["Focus", "Project tracking and reporting"],
+    ["Outcome", "System implemented and actively used"]
+  ],
+
+  technicalSpecs: [
+    ["System Type", "Field reporting and progress tracking dashboard"],
+    ["Platform", "Excel-based dashboard"],
+    ["Data Input", "Manual daily updates from field engineers"],
+    ["Key Metrics", "Progress status, delays, issues, dependencies"],
+    ["Reporting Frequency", "Daily updates"],
+    ["Coverage", "Multiple project sites"],
+    ["Output", "Centralized dashboard for management visibility"],
+    ["Integration", "Standalone system (expandable to ERP/PM tools)"],
+    ["Impact Area", "Execution tracking and decision-making"]
+  ],
+
+  previewSpecs: ["Dashboard system", "Field reporting", "Real-time tracking"],
+
+  tools: [
+    "Excel",
+    "Dashboard Design",
+    "Data Structuring",
+    "Process Standardization",
+    "Stakeholder Coordination"
+  ],
+
+  links: [
+    { label: "Project Summary", url: "#" }
+  ]
+}
+
+];
+
+
+    const projectGrid = document.getElementById('projectGrid');
+    const filterBar = document.getElementById('filterBar');
+    const modal = document.getElementById('projectModal');
+    const closeModal = document.getElementById('closeModal');
+
+    const filters = ['All', ...new Set(projects.map(p => p.filter))];
+    let activeFilter = 'All';
+
+    function renderFilters() {
+      filterBar.innerHTML = '';
+      filters.forEach(filter => {
+        const button = document.createElement('button');
+        button.className = `chip ${filter === activeFilter ? 'active' : ''}`;
+        button.textContent = filter;
+        button.addEventListener('click', () => {
+          activeFilter = filter;
+          renderFilters();
+          renderProjects();
+        });
+        filterBar.appendChild(button);
+      });
+    }
+
+    function renderProjects() {
+      const filtered = activeFilter === 'All'
+        ? projects
+        : projects.filter(project => project.filter === activeFilter);
+
+      if (!filtered.length) {
+        projectGrid.innerHTML = '<div class="empty-state">No projects found for this filter.</div>';
+        return;
+      }
+
+      projectGrid.innerHTML = filtered.map((project, index) => `
+        <article class="project-card" data-index="${projects.indexOf(project)}">
+          <div class="project-image-wrap">
+            <img class="project-image" src="${(project.images && project.images.length) ? project.images[0] : project.image}" alt="${project.title}" />
+            <div class="project-gradient"></div>
+            <div class="project-content minimal">
+              <h3 class="project-title">${project.title}</h3>
+            </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => openProject(Number(card.dataset.index)));
+      });
+    }
+
+    function openProject(index) {
+      const project = projects[index];
+
+      const mainImage = document.getElementById('modalMainImage');
+      const thumbnails = document.getElementById('modalThumbnails');
+
+      const projectImages = (project.images && project.images.length)
+        ? project.images
+        : [project.image];
+
+      mainImage.src = projectImages[0];
+      mainImage.alt = project.title;
+
+      thumbnails.innerHTML = projectImages.map(img => `
+        <img src="${img}" alt="${project.title}" onclick="document.getElementById('modalMainImage').src='${img}'">
+      `).join('');
+
+      document.getElementById('modalCategory').textContent = project.category;
+      document.getElementById('modalTitle').textContent = project.title;
+      document.getElementById('modalSummary').textContent = project.shortSummary;
+      document.getElementById('modalOverview').textContent = project.overview;
+      document.getElementById('modalChallenges').textContent = project.challenges;
+      document.getElementById('modalResults').textContent = project.results;
+      document.getElementById('modalTechSpecs').textContent = project.modaltechspecs;
+
+      document.getElementById('modalResponsibilities').innerHTML = project.responsibilities
+        .map(item => `<li>${item}</li>`).join('');
+
+      document.getElementById('modalSpecs').innerHTML = project.specs
+        .map(([key, value]) => `<div><strong>${key}:</strong> ${value}</div>`).join('');
+
+      document.getElementById('modalTools').innerHTML = project.tools
+        .map(tool => `<span class="tag">${tool}</span>`).join('');
+
+      document.getElementById('modalLinks').innerHTML = project.links
+        .map(link => `<a class="btn" href="${link.url}" target="_blank" rel="noreferrer">${link.label}</a>`)
+        .join('');
+
+      document.getElementById('modalTechSpecs').innerHTML = project.technicalSpecs
+        .map(([key, value]) => `<div><strong>${key}:</strong> ${value}</div>`)
+        .join('');
+
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) hideModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) hideModal();
+    });
+
+    renderFilters();
+    renderProjects();
+  </script>
+
+  <!--
+    HOW TO ADD A NEW PROJECT
+
+    1. Put a new image in the images folder, for example:
+       images/project-5.jpg
+
+    2. Copy one project object inside the "projects" array in the script section.
+
+    3. Change these fields:
+       - title
+       - category
+       - filter
+       - image
+       - shortSummary
+       - overview
+       - responsibilities
+       - challenges
+       - results
+       - specs
+       - previewSpecs
+       - tools
+       - links
+
+    4. Save and push to GitHub.
+
+    RECOMMENDED GITHUB PAGES STRUCTURE
+
+    /index.html
+    /resume.pdf
+    /images/project-1.jpg
+    /images/project-2.jpg
+    /images/project-3.jpg
+    /images/project-4.jpg
+
+    CUSTOMIZATION NOTES
+
+    - Replace all placeholder links like GitHub, LinkedIn, email, and resume.pdf
+    - Keep cover images large and high quality
+    - Write each project in project manager language:
+      objective, stakeholders, timeline, risks, actions, outcome
+    - Use this website URL in your resume header and LinkedIn featured section
+  -->
+</body>
+</html>
